@@ -53,25 +53,22 @@
             </li>
 
 
-            <li class="active">
-                <a href="admin_comment.php"><i class="fa fa-fw fa-file"></i> Comments </a>
+            <li>
+                <a href="admin_comment.php"><i class="fa fa-fw fa-comment "></i> Comments </a>
             </li>
 
             <!-- Users Dropdown -->
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="#">Dropdown Item</a>
-                    </li>
-                    <li>
-                        <a href="#">Dropdown Item</a>
+                        <a href="view_users.php">View Users</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="active">
-                <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Profile </a>
+            <li>
+                <a href="blank-page.html"><i class="fa fa-fw fa-user"></i> Profile </a>
             </li>
 
         </ul>

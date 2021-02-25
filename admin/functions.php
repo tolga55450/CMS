@@ -1,5 +1,6 @@
 <?php
 
+//Category Functions
 function addCategory(){
 
     //ADD CATEGORY
@@ -111,6 +112,7 @@ function find_update_category(){
 <?php
 }
 
+//Post Functions
 function addPosts(){
     global $connection;
     if(isset($_POST["submit"])){
@@ -321,6 +323,7 @@ function updatePosts()
 <?php
 }
 
+//Comment Functions
 function updateStatus(){
 
     global $connection;
@@ -485,4 +488,51 @@ function deleteComments(){
         }
     }
 
+}
+
+//User Functions
+function showUsers(){
+    //Show all users
+    global $connection;
+    $query = "SELECT * FROM users";
+    $select_all_users = mysqli_query($connection,$query);
+
+    if(!$select_all_users){
+        echo mysqli_error($connection);
+    }
+
+    while($row = mysqli_fetch_assoc($select_all_users)){
+
+        $users_id = $row["users_id"];
+        $users_image = $row["users_image"];
+        $users_username = $row["users_username"];
+        $users_name = $row["users_name"];
+        $users_mail = $row["users_mail"];
+        $users_password = $row["users_password"];
+        ?>
+
+        <tr>
+            <td><?php echo $users_id;?></td>
+            <td><img src='../images/<?php echo $users_image;?>'></td>
+            <td><?php echo $users_username;?></td>
+            <td><?php echo $users_name;?></td>
+            <td><?php echo $users_mail;?></td>
+            <td><?php echo $users_password;?></td>
+            <td><a href='view_users.php?delete=<?php echo $users_id;?>'>Delete</a></td>
+
+        </tr>
+    <?php }
+}
+
+function deleteUsers(){
+    global $connection;
+    //Delete user with get
+    if(isset($_GET["delete"])){
+        $users_id = $_GET["delete"];
+        $query = "DELETE FROM users WHERE users_id = '$users_id'";
+        $delete_user = mysqli_query($connection,$query);
+        if(!$delete_user){
+            echo mysqli_error($connection);
+        }
+    }
 }
