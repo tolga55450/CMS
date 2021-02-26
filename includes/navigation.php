@@ -25,6 +25,9 @@
                 <li><a href='login_register/sign_in.php' style="">Login</a></li>
                 <li><a href='login_register/sign_up.php'>Register</a></li>
 
+                <li><a href='login_register/sign_up.php'></a></li>
+
+
             </ul>
         </div>
 

@@ -5,34 +5,23 @@ function loginBackend(): string
     global $connection;
     if(isset($_POST["submit"])){
 
-        $users_username_mail = $_POST["users_username_mail"];
+        $users_username = $_POST["users_username"];
         $users_password = $_POST["users_password"];
 
-        if(empty($users_username_mail) || empty($users_password)){
+        if(empty($users_username) || empty($users_password)){
             return "O";
         }
 
         //Determine Username or Mail
-        if(str_contains($users_username_mail,"@")){
-            $variable = "users_mail";
-        }
-        else{
-            $variable = "users_username";
-        }
 
         $query = "SELECT * FROM users";
         $select_from_table = mysqli_query($connection,$query);
         while($row = mysqli_fetch_assoc($select_from_table)){
 
-            if($variable == "users_mail"){
-                $table_variable = $row['users_mail'];
-            }
-            else{
-                $table_variable = $row['users_username'];
-            }
+            $table_variable = $row['users_username'];
             $table_pass = $row["users_password"];
 
-            if($users_username_mail === $table_variable && $users_password === $table_pass){
+            if($users_username === $table_variable && $users_password === $table_pass){
                 return 'T';
             }
         }
@@ -61,6 +50,14 @@ function registerBackend()
             $query = "INSERT INTO users (users_username,users_name,users_mail,users_password) VALUES ('$users_username','$users_name','$users_mail','$users_password')";
             $add_to_db = mysqli_query($connection,$query);
             echo "<strong>Register Completed Successfully</strong>";
+
+
+            $fp = fopen('users/' . $users_username . '.php','w');
+            copy("users/sample.php",'users/' . $users_username . '.php');
+            fclose($fp);
+
+            header('Location: users/'.$users_username.'.php');
+
         }
     }
 }
@@ -93,7 +90,7 @@ function checkRules($users_name,$users_username,$users_mail,$users_password,$use
     $name_array = str_split($users_username);
     foreach ($name_array as $letter){
 
-        if((ord($letter) >=65 && ord($letter) <=90) || (ord($letter) >=97 && ord($letter) <=122 || $letter == " ")){
+        if((ord($letter) >=65 && ord($letter) <=90) || (ord($letter) >=97 && ord($letter) <=122 || $letter == " "  || $letter == '_')){
             continue;
         }else{
             echo "<strong>Invalid Username<br></strong>";

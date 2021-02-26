@@ -21,7 +21,8 @@
                     <?php
                     $success = loginBackend();
                     if($success == "T"){
-                        echo "<strong>Login Completed Successfully<br>Welcome Back</strong>";
+                        global $users_username;
+                        header('Location: users/'.$users_username.'.php');
                     }
                     elseif($success == "O"){
                         echo "<strong>Please Fill the Blanks";
@@ -34,7 +35,7 @@
                     <form method="POST" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="users_username_mail" id="your_name" placeholder="Your Username or Email"/>
+                            <input type="text" name="users_username" id="your_name" placeholder="Your Username"/>
                         </div>
                         <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>

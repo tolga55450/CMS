@@ -12,6 +12,7 @@
                 <div class="signup-form">
                     <h2 class="form-title">Sign up</h2>
                     <?php registerBackend(); ?>
+
                     <form method="POST" class="register-form" id="register-form">
                         <div class="form-group">
                             <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
